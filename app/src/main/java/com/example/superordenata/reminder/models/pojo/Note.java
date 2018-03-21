@@ -18,16 +18,19 @@ public class Note extends RealmObject {
     private String note;
     @Required
     private Date date;
+    @Required
+    private String color;
     private boolean alarm;
 
     public Note() {
     }
 
-    public Note(String title, String note) {
+    public Note(String title, String note, String color) {
         this.id = MyApplication.NoteID.incrementAndGet();
         this.title = title;
         this.note = note;
         this.date = new Date();
+        this.color = color;
         this.alarm = false;
     }
 
@@ -53,6 +56,14 @@ public class Note extends RealmObject {
 
     public Date getDate() {
         return date;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
     }
 
     public boolean isAlarm() {

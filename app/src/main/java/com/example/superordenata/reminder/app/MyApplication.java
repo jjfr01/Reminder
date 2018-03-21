@@ -14,7 +14,6 @@ import io.realm.RealmResults;
 
 public class MyApplication extends Application {
 
-    //public static AtomicInteger BoardID = new AtomicInteger();
     public static AtomicInteger NoteID = new AtomicInteger();
 
     @Override
@@ -23,7 +22,6 @@ public class MyApplication extends Application {
         setUpRealmConfig();
 
         Realm realm = Realm.getDefaultInstance();
-        /*BoardID = getIdByTable(realm, Board.class);*/
         NoteID = getIdByTable(realm, Note.class);
         realm.close();
     }
