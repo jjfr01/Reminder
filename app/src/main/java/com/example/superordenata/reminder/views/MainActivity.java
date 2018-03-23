@@ -2,11 +2,8 @@ package com.example.superordenata.reminder.views;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
@@ -14,12 +11,10 @@ import android.view.MenuItem;
 
 import com.example.superordenata.reminder.R;
 import com.example.superordenata.reminder.models.GlobalData;
-import com.example.superordenata.reminder.models.pojo.Note;
-import com.example.superordenata.reminder.views.adapters.RecyclerAdapterViewNote;
+import com.example.superordenata.reminder.models.pojo.MyNote;
 import com.example.superordenata.reminder.views.fragments.RecyclerViewNoteFragment;
 
 import io.realm.Realm;
-import io.realm.RealmResults;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -33,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
     private void init() {
         GlobalData.realm = Realm.getDefaultInstance();
 
-        GlobalData.data = GlobalData.realm.where(Note.class).findAll();
+        GlobalData.data = GlobalData.realm.where(MyNote.class).findAll();
 
         fab = findViewById(R.id.fab);
         toolbar = findViewById(R.id.toolbar);
@@ -49,13 +44,13 @@ public class MainActivity extends AppCompatActivity {
                 GlobalData.realm.executeTransaction(new Realm.Transaction() {
                     @Override
                     public void execute(Realm realm) {
-                        Note note;
+                        MyNote myNote;
                         if(GlobalData.data.size() > 0){
                             //Nada por ahora
                         } else {
-                            note = new Note("Titulo1", "Nota1", "Rojo");
+                            myNote = new MyNote("Titulo1", "Nota1", "Rojo");
                             //Esto es provicional
-                            realm.copyToRealmOrUpdate(note);
+                            realm.copyToRealmOrUpdate(myNote);
                             //Debo hacer que actualice el Recycler
                             sendDataFragment();
                         }

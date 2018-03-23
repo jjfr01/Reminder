@@ -1,7 +1,5 @@
 package com.example.superordenata.reminder.views.fragments;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -12,11 +10,7 @@ import android.view.ViewGroup;
 
 import com.example.superordenata.reminder.R;
 import com.example.superordenata.reminder.models.GlobalData;
-import com.example.superordenata.reminder.models.pojo.Note;
 import com.example.superordenata.reminder.views.adapters.RecyclerAdapterViewNote;
-
-import io.realm.Realm;
-import io.realm.RealmResults;
 
 public class RecyclerViewNoteFragment extends Fragment {
 

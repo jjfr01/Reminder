@@ -1,7 +1,7 @@
 package com.example.superordenata.reminder.models;
 
 
-import com.example.superordenata.reminder.models.pojo.Note;
+import com.example.superordenata.reminder.models.pojo.MyNote;
 
 import io.realm.Realm;
 import io.realm.RealmResults;
@@ -9,6 +9,6 @@ import io.realm.RealmResults;
 public class GlobalData {
 
     public static Realm realm;
-    public static RealmResults<Note> data;
+    public static RealmResults<MyNote> data;
 
 }

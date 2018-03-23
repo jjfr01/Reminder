@@ -1,6 +1,5 @@
 package com.example.superordenata.reminder.models.pojo;
 
-
 import com.example.superordenata.reminder.app.MyApplication;
 
 import java.util.Date;
@@ -9,8 +8,8 @@ import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 import io.realm.annotations.Required;
 
-public class Note extends RealmObject {
 
+public class MyNote extends RealmObject {
     @PrimaryKey
     private int id;
     @Required
@@ -22,11 +21,11 @@ public class Note extends RealmObject {
     private String color;
     private boolean alarm;
 
-    public Note() {
+    public MyNote() {
     }
 
-    public Note(String title, String note, String color) {
-        this.id = MyApplication.NoteID.incrementAndGet();
+    public MyNote(String title, String note, String color) {
+        this.id = MyApplication.MyNoteID.incrementAndGet();
         this.title = title;
         this.note = note;
         this.date = new Date();

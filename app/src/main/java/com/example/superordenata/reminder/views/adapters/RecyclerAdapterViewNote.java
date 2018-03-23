@@ -12,7 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.superordenata.reminder.R;
-import com.example.superordenata.reminder.models.pojo.Note;
+import com.example.superordenata.reminder.models.pojo.MyNote;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -24,24 +24,24 @@ public class RecyclerAdapterViewNote extends RecyclerView.Adapter<RecyclerAdapte
 
     private Context context;
     private Realm realm;
-    private RealmResults<Note> data;
+    private RealmResults<MyNote> data;
 
-    public RecyclerAdapterViewNote(RealmResults<Note> data) {
+    public RecyclerAdapterViewNote(RealmResults<MyNote> data) {
         this.data = data;
     }
 
-    public RecyclerAdapterViewNote(Context context, RealmResults<Note> data) {
+    public RecyclerAdapterViewNote(Context context, RealmResults<MyNote> data) {
         this.context = context;
         this.data = data;
     }
 
-    public RecyclerAdapterViewNote(Context context, RealmResults<Note> data, Realm realm) {
+    public RecyclerAdapterViewNote(Context context, RealmResults<MyNote> data, Realm realm) {
         this.context = context;
         this.data = data;
         this.realm = realm;
     }
 
-    public RecyclerAdapterViewNote(Context context, RealmResults<Note> data, FragmentActivity fragmentActivity, Bundle bundle) {
+    public RecyclerAdapterViewNote(Context context, RealmResults<MyNote> data, FragmentActivity fragmentActivity, Bundle bundle) {
         this.context = context;
         this.data = data;
         /*this.fragmentActivity = fragmentActivity;
@@ -59,9 +59,9 @@ public class RecyclerAdapterViewNote extends RecyclerView.Adapter<RecyclerAdapte
 
     @Override
     public void onBindViewHolder(RecyclerAdapterViewNote.NoteViewHolder holder, int position) {
-        Note note = data.get(position);
+        MyNote myNote = data.get(position);
 
-        holder.bindNote(note, position);
+        holder.bindNote(myNote, position);
     }
 
     @Override
@@ -69,7 +69,7 @@ public class RecyclerAdapterViewNote extends RecyclerView.Adapter<RecyclerAdapte
         return data.size();
     }
 
-    public void updateArray(RealmResults<Note> updatedArray) {
+    public void updateArray(RealmResults<MyNote> updatedArray) {
         data = updatedArray;
     }
 
@@ -89,7 +89,7 @@ public class RecyclerAdapterViewNote extends RecyclerView.Adapter<RecyclerAdapte
 
         }
 
-        public void bindNote(final Note s, final int position) {
+        public void bindNote(final MyNote s, final int position) {
             //Cargamos los datos en los label y demás y definimos OnClickListener
             this.tvTitle.setText(s.getTitle());
             Date date = s.getDate();
