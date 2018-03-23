@@ -3,6 +3,7 @@ package com.example.superordenata.reminder.views;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -12,26 +13,27 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.superordenata.reminder.R;
+import com.example.superordenata.reminder.models.GlobalData;
 import com.example.superordenata.reminder.models.pojo.Note;
 import com.example.superordenata.reminder.views.adapters.RecyclerAdapterViewNote;
+import com.example.superordenata.reminder.views.fragments.RecyclerViewNoteFragment;
 
 import io.realm.Realm;
 import io.realm.RealmResults;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Realm realm;
-    private RealmResults<Note> data;
+    private static final int ID_FRAGMENT_MAIN = 1;
 
-    private RecyclerAdapterViewNote recyclerAdapterViewNote;
     private FloatingActionButton fab;
     private Toolbar toolbar;
-    private RecyclerView recyclerView;
+
+    private int seletedFragment = 0;
 
     private void init() {
-        realm = Realm.getDefaultInstance();
+        GlobalData.realm = Realm.getDefaultInstance();
 
-        data = realm.where(Note.class).findAll();
+        GlobalData.data = GlobalData.realm.where(Note.class).findAll();
 
         fab = findViewById(R.id.fab);
         toolbar = findViewById(R.id.toolbar);
@@ -44,17 +46,18 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                realm.executeTransaction(new Realm.Transaction() {
+                GlobalData.realm.executeTransaction(new Realm.Transaction() {
                     @Override
                     public void execute(Realm realm) {
                         Note note;
-                        if(data.size() > 0){
+                        if(GlobalData.data.size() > 0){
                             //Nada por ahora
                         } else {
                             note = new Note("Titulo1", "Nota1", "Rojo");
                             //Esto es provicional
                             realm.copyToRealmOrUpdate(note);
-                            recyclerAdapterViewNote.notifyDataSetChanged();
+                            //Debo hacer que actualice el Recycler
+                            sendDataFragment();
                         }
                     }
                 });
@@ -62,17 +65,15 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         init();
-
-        recyclerView = findViewById(R.id.rvMain);
-        recyclerAdapterViewNote = new RecyclerAdapterViewNote(this, data, realm);
-        recyclerView.setAdapter(recyclerAdapterViewNote);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+        defaultFragment();
     }
 
     @Override
@@ -95,5 +96,33 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void changeFragment(Fragment fragment) {
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.fragMain, fragment)
+                .commit();
+    }
+
+    public void defaultFragment() {
+        Fragment fragment = new RecyclerViewNoteFragment();
+
+        changeFragment(fragment);
+
+        seletedFragment = ID_FRAGMENT_MAIN;
+    }
+
+    public void sendDataFragment() {
+        switch (seletedFragment) {
+
+            case ID_FRAGMENT_MAIN:
+
+                RecyclerViewNoteFragment fragment = (RecyclerViewNoteFragment) getSupportFragmentManager().findFragmentById(R.id.fragMain);
+                fragment.updateRecyclerFragment();
+
+                break;
+
+        }
     }
 }

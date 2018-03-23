@@ -19,7 +19,7 @@
             android:id="@+id/ctLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:minHeight="80dp"
+            android:minHeight="160dp"
             android:padding="8dp">
 
             <ImageView
@@ -27,24 +27,26 @@
                 android:layout_width="8dp"
                 android:layout_height="match_parent"
                 android:background="@color/colorPrimary"
+                app:layout_constraintBottom_toBottomOf="@id/ctLayout"
+                app:layout_constraintEnd_toEndOf="@id/ctLayout"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@id/ctLayout"
-                app:layout_constraintTop_toTopOf="@id/ctLayout"
-                app:layout_constraintBottom_toBottomOf="@id/ctLayout"
-                app:layout_constraintEnd_toEndOf="@id/ctLayout"/>
+                app:layout_constraintTop_toTopOf="@id/ctLayout" />
 
             <TextView
                 android:id="@+id/tvTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
                 android:layout_marginRight="8dp"
                 android:text="Title"
+                android:textColor="@color/textDark"
                 android:textSize="20sp"
                 android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@id/ctLayout"
                 app:layout_constraintHorizontal_bias="0.05"
                 app:layout_constraintStart_toEndOf="@id/ivColor"
-                app:layout_constraintTop_toTopOf="@id/ctLayout"
-                app:layout_constraintEnd_toEndOf="@id/ctLayout"/>
+                app:layout_constraintTop_toTopOf="@id/ctLayout" />
 
             <TextView
                 android:id="@+id/tvDate"
@@ -52,12 +54,12 @@
                 android:layout_height="wrap_content"
                 android:maxEms="7"
                 android:text="27-09-1994"
+                android:textColor="@color/textLight"
+                android:textSize="12sp"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@id/ctLayout"
-                app:layout_constraintTop_toBottomOf="@id/tvTitle"
-                app:layout_constraintStart_toStartOf="@id/tvTitle"
                 app:layout_constraintStart_toEndOf="@id/ivColor"
-                tools:layout_editor_absoluteX="50dp" />
+                app:layout_constraintStart_toStartOf="@id/tvTitle"
+                app:layout_constraintTop_toBottomOf="@id/tvTitle" />
 
             <ImageView
                 android:id="@+id/alarmButton"
