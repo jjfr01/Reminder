@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
 
         tabLayout = findViewById(R.id.tabLayout);
 
-        //Según Material Desing, deja los icones por encima del nombre
+        //Según Material Desing, deja los iconos por encima del nombre
         /*tabLayout.addTab(tabLayout.newTab().setText("Notas"));
         tabLayout.addTab(tabLayout.newTab().setText("Grupos"));
         tabLayout.getTabAt(0).setIcon(R.drawable.ic_single);
