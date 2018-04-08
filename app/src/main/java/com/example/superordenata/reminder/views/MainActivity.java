@@ -1,5 +1,6 @@
 package com.example.superordenata.reminder.views;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
@@ -12,7 +13,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.superordenata.reminder.R;
 import com.example.superordenata.reminder.models.GlobalData;
@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
 
         GlobalData.data = GlobalData.realm.where(MyNote.class).findAll();
 
-        fab = findViewById(R.id.fab);
+        fab = findViewById(R.id.fabAdd);
 
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -94,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View view) {
-                GlobalData.realm.executeTransaction(new Realm.Transaction() {
+                /*GlobalData.realm.executeTransaction(new Realm.Transaction() {
                     @Override
                     public void execute(Realm realm) {
                         MyNote myNote;
@@ -114,7 +114,9 @@ public class MainActivity extends AppCompatActivity {
                             }
                         }
                     }
-                });
+                });*/
+                Intent intent = new Intent(MainActivity.this, SelectMyNoteActivity.class);
+                startActivity(intent);
             }
         });
     }
