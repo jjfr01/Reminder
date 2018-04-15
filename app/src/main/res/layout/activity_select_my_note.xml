@@ -6,4 +6,29 @@
     android:layout_height="match_parent"
     tools:context=".views.SelectMyNoteActivity">
 
+    <Button
+        android:id="@+id/addMyNote"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:text="@string/add_My_Note"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toTopOf="@id/addListNote"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/addListNote"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/add_List_Note"
+        android:textColor="#FFFFFF"
+        android:background="@color/colorPrimary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/addMyNote" />
 </android.support.constraint.ConstraintLayout>

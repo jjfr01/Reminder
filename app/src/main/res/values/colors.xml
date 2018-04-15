@@ -3,8 +3,10 @@
     <color name="colorPrimary">#4CAF50</color>
     <color name="colorPrimaryDark">#388E3C</color>
     <color name="colorAccent">#FFC107</color>
+    <color name="colorLight">#FF84DE87</color>
 
     <color name="transparent">#00ff0000</color>
     <color name="textDark">#212121</color>
     <color name="textLight">#727272</color>
+    <color name="ErrorText">#ff0000</color>
 </resources>

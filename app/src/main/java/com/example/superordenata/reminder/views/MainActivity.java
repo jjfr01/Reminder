@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import com.example.superordenata.reminder.R;
 import com.example.superordenata.reminder.models.GlobalData;
+import com.example.superordenata.reminder.models.pojo.ListNote;
 import com.example.superordenata.reminder.models.pojo.MyNote;
 import com.example.superordenata.reminder.views.adapters.MyPagerAdapter;
 
@@ -36,7 +37,8 @@ public class MainActivity extends AppCompatActivity {
     private void init() {
         GlobalData.realm = Realm.getDefaultInstance();
 
-        GlobalData.data = GlobalData.realm.where(MyNote.class).findAll();
+        GlobalData.dataMyNote = GlobalData.realm.where(MyNote.class).findAll();
+        GlobalData.dataListNote = GlobalData.realm.where(ListNote.class).findAll();
 
         fab = findViewById(R.id.fabAdd);
 
@@ -98,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void execute(Realm realm) {
                         MyNote myNote;
-                        if(GlobalData.data.size() > 0){
+                        if(GlobalData.dataMyNote.size() > 0){
                             //Nada por ahora
                         } else {
                             myNote = new MyNote("Titulo1", "Nota1", "Rojo");

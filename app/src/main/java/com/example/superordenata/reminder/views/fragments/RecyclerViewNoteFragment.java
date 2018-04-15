@@ -28,7 +28,7 @@ public class RecyclerViewNoteFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_recycler_view_note, container, false);
 
         recyclerView = view.findViewById(R.id.rvMain);
-        recyclerAdapterViewNote = new RecyclerAdapterViewNote(view.getContext(), GlobalData.data, GlobalData.realm);
+        recyclerAdapterViewNote = new RecyclerAdapterViewNote(view.getContext(), GlobalData.dataMyNote, GlobalData.realm);
         recyclerView.setAdapter(recyclerAdapterViewNote);
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext(), LinearLayoutManager.VERTICAL, false));
 

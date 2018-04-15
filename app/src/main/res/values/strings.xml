@@ -2,6 +2,9 @@
     <string name="app_name">Reminder</string>
     <string name="action_settings">Settings</string>
 
+    <string name="add_My_Note">Nueva Nota</string>
+    <string name="add_List_Note">Nueva Lista</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

@@ -17,4 +17,16 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="Counter" parent="TextAppearance.Design.Counter">
+        <item name="android:textColor">@color/colorPrimary</item>
+    </style>
+
+    <style name="Hint" parent="TextAppearance.Design.Hint">
+        <item name="android:textColor">@color/colorPrimary</item>
+    </style>
+
+    <style name="OverFlowCounter" parent="TextAppearance.Design.Counter.Overflow">
+        <item name="android:textColor">@color/ErrorText</item>
+    </style>
+
 </resources>

@@ -2,50 +2,49 @@ package com.example.superordenata.reminder.models.pojo;
 
 import com.example.superordenata.reminder.app.MyApplication;
 
+import java.util.ArrayList;
 import java.util.Date;
 
+import io.realm.RealmList;
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 import io.realm.annotations.Required;
 
+public class ListNote extends RealmObject {
 
-public class MyNote extends RealmObject {
     @PrimaryKey
     private int id;
     @Required
     private String title;
-    private String note;
+    @Required
+    private RealmList<String> list; //ArrayList normales no sirven, deben ser RealmList<>
     @Required
     private Date date;
     private String color;
     private boolean alarm;
     private boolean haveAlarm;
 
-    public MyNote() {
+    public ListNote() {
     }
 
-    public MyNote(String title, String note, String color) {
-        this.id = MyApplication.MyNoteID.incrementAndGet();
+    public ListNote(String title, RealmList<String> list, String color) {
+        this.id = MyApplication.ListNoteID.incrementAndGet();
         this.title = title;
-        this.note = note;
+        this.list = list;
         this.date = new Date();
         this.color = color;
         this.alarm = false;
         this.haveAlarm = false;
     }
 
-    public MyNote(String title, String note, String color, Date date) {
-        this.id = MyApplication.MyNoteID.incrementAndGet();
+    public ListNote(String title, RealmList<String> list, String color, Date date) {
+        this.id = MyApplication.ListNoteID.incrementAndGet();
         this.title = title;
-        this.note = note;
+        this.list = list;
         this.date = date;
         this.color = color;
         this.alarm = false;
         this.haveAlarm = false;
-    }
-
-    public int getId() {
-        return id;
     }
 
     public String getTitle() {
@@ -56,16 +55,20 @@ public class MyNote extends RealmObject {
         this.title = title;
     }
 
-    public String getNote() {
-        return note;
+    public RealmList<String> getList() {
+        return list;
     }
 
-    public void setNote(String note) {
-        this.note = note;
+    public void setList(RealmList<String> list) {
+        this.list = list;
     }
 
     public Date getDate() {
         return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
     }
 
     public String getColor() {

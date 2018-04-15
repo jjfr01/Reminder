@@ -20,7 +20,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".views.SelectMyNoteActivity"></activity>
+        <activity android:name=".views.SelectMyNoteActivity" />
+        <activity android:name=".views.MyNoteActivity"></activity>
     </application>
 
 </manifest>
