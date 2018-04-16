@@ -12,7 +12,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.superordenata.reminder.R;
-import com.example.superordenata.reminder.models.pojo.ListNote;
 import com.example.superordenata.reminder.models.pojo.MyNote;
 
 import java.text.SimpleDateFormat;
@@ -93,7 +92,7 @@ public class RecyclerAdapterViewNote extends RecyclerView.Adapter<RecyclerAdapte
         public void bindNote(final MyNote s, final int position) {
             //Cargamos los datos en los label y demás y definimos OnClickListener
             this.tvTitle.setText(s.getTitle());
-            Date date = s.getDate();
+            Date date = s.getCreateDate();
             SimpleDateFormat fmt = new SimpleDateFormat("dd-MM-yyyy");
             this.tvDate.setText(fmt.format(date));
             this.displayAlarm(s);

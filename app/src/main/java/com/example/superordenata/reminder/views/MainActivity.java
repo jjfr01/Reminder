@@ -7,6 +7,7 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Menu;
@@ -16,7 +17,6 @@ import android.widget.TextView;
 
 import com.example.superordenata.reminder.R;
 import com.example.superordenata.reminder.models.GlobalData;
-import com.example.superordenata.reminder.models.pojo.ListNote;
 import com.example.superordenata.reminder.models.pojo.MyNote;
 import com.example.superordenata.reminder.views.adapters.MyPagerAdapter;
 
@@ -25,6 +25,7 @@ import io.realm.Realm;
 public class MainActivity extends AppCompatActivity {
 
     private static final int ID_FRAGMENT_MAIN = 1;
+    private static final int CODE_INTENT_NEW_NOTE = 1;
 
     private FloatingActionButton fab;
     private Toolbar toolbar;
@@ -38,7 +39,6 @@ public class MainActivity extends AppCompatActivity {
         GlobalData.realm = Realm.getDefaultInstance();
 
         GlobalData.dataMyNote = GlobalData.realm.where(MyNote.class).findAll();
-        GlobalData.dataListNote = GlobalData.realm.where(ListNote.class).findAll();
 
         fab = findViewById(R.id.fabAdd);
 
@@ -118,7 +118,12 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });*/
                 Intent intent = new Intent(MainActivity.this, SelectMyNoteActivity.class);
-                startActivity(intent);
+                intent.putExtra("codeIntent", CODE_INTENT_NEW_NOTE);
+                /*intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+                intent.addFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);*/
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+                startActivityForResult(intent, CODE_INTENT_NEW_NOTE);
             }
         });
     }
@@ -151,6 +156,17 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(resultCode == RESULT_OK){
+            if(requestCode == CODE_INTENT_NEW_NOTE) {
+                Log.d("Prueba", data.getStringExtra("OK"));
+            }
+        }
     }
 
     private void loadTabs(){

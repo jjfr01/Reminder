@@ -1,9 +1,8 @@
 package com.example.superordenata.reminder.models.pojo;
 
-import com.example.superordenata.reminder.app.MyApplication;
-
 import java.util.Date;
 
+import io.realm.RealmList;
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 import io.realm.annotations.Required;
@@ -15,33 +14,20 @@ public class MyNote extends RealmObject {
     @Required
     private String title;
     private String note;
-    @Required
-    private Date date;
     private String color;
+    @Required
+    private Date createDate;
+    private Date alarmDate;
     private boolean alarm;
     private boolean haveAlarm;
+    private boolean isList;
+    private RealmList<String> list; //ArrayList normales no sirven, deben ser RealmList<>
+    private RealmList<String> groups;
+    private boolean isDraft;
+    // TODO Averiguar como hacer los mapas en la nota
+    private boolean haveMap;
 
     public MyNote() {
-    }
-
-    public MyNote(String title, String note, String color) {
-        this.id = MyApplication.MyNoteID.incrementAndGet();
-        this.title = title;
-        this.note = note;
-        this.date = new Date();
-        this.color = color;
-        this.alarm = false;
-        this.haveAlarm = false;
-    }
-
-    public MyNote(String title, String note, String color, Date date) {
-        this.id = MyApplication.MyNoteID.incrementAndGet();
-        this.title = title;
-        this.note = note;
-        this.date = date;
-        this.color = color;
-        this.alarm = false;
-        this.haveAlarm = false;
     }
 
     public int getId() {
@@ -64,16 +50,28 @@ public class MyNote extends RealmObject {
         this.note = note;
     }
 
-    public Date getDate() {
-        return date;
-    }
-
     public String getColor() {
         return color;
     }
 
     public void setColor(String color) {
         this.color = color;
+    }
+
+    public Date getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
+    }
+
+    public Date getAlarmDate() {
+        return alarmDate;
+    }
+
+    public void setAlarmDate(Date alarmDate) {
+        this.alarmDate = alarmDate;
     }
 
     public boolean isAlarm() {
@@ -90,5 +88,37 @@ public class MyNote extends RealmObject {
 
     public void setHaveAlarm(boolean haveAlarm) {
         this.haveAlarm = haveAlarm;
+    }
+
+    public boolean isList() {
+        return isList;
+    }
+
+    public void setList(boolean list) {
+        isList = list;
+    }
+
+    public RealmList<String> getList() {
+        return list;
+    }
+
+    public void setList(RealmList<String> list) {
+        this.list = list;
+    }
+
+    public RealmList<String> getGroups() {
+        return groups;
+    }
+
+    public void setGroups(RealmList<String> groups) {
+        this.groups = groups;
+    }
+
+    public boolean isDraft() {
+        return isDraft;
+    }
+
+    public void setDraft(boolean draft) {
+        isDraft = draft;
     }
 }

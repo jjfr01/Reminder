@@ -3,7 +3,6 @@ package com.example.superordenata.reminder.app;
 
 import android.app.Application;
 
-import com.example.superordenata.reminder.models.pojo.ListNote;
 import com.example.superordenata.reminder.models.pojo.MyNote;
 
 import java.util.concurrent.atomic.AtomicInteger;
@@ -16,7 +15,6 @@ import io.realm.RealmResults;
 public class MyApplication extends Application {
 
     public static AtomicInteger MyNoteID = new AtomicInteger();
-    public static AtomicInteger ListNoteID = new AtomicInteger();
 
     @Override
     public void onCreate() {
@@ -25,7 +23,6 @@ public class MyApplication extends Application {
 
         Realm realm = Realm.getDefaultInstance();
         MyNoteID = getIdByTable(realm, MyNote.class);
-        ListNoteID = getIdByTable(realm, ListNote.class);
         realm.close();
     }
 
